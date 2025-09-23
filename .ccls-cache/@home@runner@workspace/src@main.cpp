@@ -3,8 +3,9 @@
 using namespace std;
 
 int main() {
+    string name, author, content;
+    int choice;
     Book book[100];
     cout << "Hello Welcome to Our Ebook Store!" << endl;
-    cout << Book::bookCount << endl;
     return 0;
 }

@@ -3,7 +3,6 @@ using namespace std;
 
 class Book{
 private:
-  int bookID;
   string name;
   string author;
   string content;
@@ -12,8 +11,9 @@ public:
   static int bookCount;
   Book();
   void setBook(string n, string a, string c);
-  void updateBook(int id, string n, string a, string c);
-  int getBookID();
+  void setName(string n);
+  void setAuthor(string a);
+  void setContent(string c); 
   string getName();
   string getAuthor();
   string getContent(); 

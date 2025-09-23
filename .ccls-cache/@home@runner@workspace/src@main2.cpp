@@ -2,7 +2,7 @@
 #include "Book.h"
 using namespace std;
 
-int main() {
+int main1() {
     string name, author, content;
     int choice;
     Book book[100];
