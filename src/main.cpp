@@ -2,29 +2,39 @@
 #include "Book.h"
 using namespace std;
 
+int get_number_only();
+void read_book(Book book[]);
 
-int get_number_only() //This is a input validate function for number only 
-{
-    int number;
 
-    cout << "Enter a number: ";
-    if (cin >> number){
-        return number;
-    }
-    else{
-        return 0;
-    }
-}
-
-/*int main() {
+int main() {
     string name, author, content;
     int choice;
     Book book[100];
-    cout << "Hello Welcome to Our Ebook Store!" << endl;
+    cout << "Hello Welcome to ERead!" << endl;
+    do{
+        cout << "\n1. Read Book" << "\n2. Edit Book List" << "\n3. Exit" << "\nEnter Choice(In Number): ";
+        choice = get_number_only();
+        switch(choice){
+            case 1:{
+                read_book(book);
+                break;
+            }
+            case 2:{
+                
+            }
+            case 3:{
+                cout << "Thank you for using ERead. See you next time" << endl;
+                break;
+            }
+            default:{
+                cout << "Invalid Input! Please eneter again."<< endl;
+            }
+        }
+    }
+        while(choice != 3);
     return 0;
-}*/
-
-int main() { //This is our main system (Book Checking, Book Adding, Book Removing, Book listing)
+}
+int main1() { //This is our main system (Book Checking, Book Adding, Book Removing, Book listing)
     string choice;
     string Remove;
     string Search;
@@ -102,4 +112,39 @@ int main() { //This is our main system (Book Checking, Book Adding, Book Removin
         }
     }
     return 0;
+}
+
+int get_number_only() //This is a input validate function for number only
+{
+    int number;
+    if (cin >> number){
+        return number;
+    }
+    else{
+        return 0;
+    }
+}
+
+void read_book(Book book[]){
+    int input = 0;
+    if(Book::bookCount > 0){
+        do{
+            cout << "Book List" << endl;
+            for(int i = 0; i < Book::bookCount; i++){
+                cout << i+1 << ". " << book[i].getName() << " " << book[i].getAuthor() << endl;
+            }
+            cout << "Choose a Book(Enter in number): ";
+            input = get_number_only();
+            if(input > 0 && input <= Book::bookCount){
+                cout << "\nBook Name\t: " << book[input-1].getName() << "\nAuthor\t: " << book[input-1].getAuthor() << "\n    " << book[input-1].getContent() << endl;
+            }
+            else {
+                cout << "Invalid Input! Please eneter again.";
+            }
+        }
+            while(input <= 0 || input > Book::bookCount);
+    }
+    else {
+        cout << "The book list is empty! Please add the book list" << endl;
+    }
 }
