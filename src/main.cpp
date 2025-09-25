@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "Book.h"
 
 using namespace std;
@@ -51,6 +52,7 @@ int main() {
                     }
                 }
                     while(choice2 <= 0 || choice2 > 4);
+                break;
             }
             case 3:{
                 cout << "Thank you for using ERead. See you next time" << endl;
@@ -67,10 +69,18 @@ int main() {
 
 int get_number_only() //This is a input validate function for number only
 {
+    string input;
     int number;
-    if (cin >> number){
-        return number;
+    bool isNumber = true;
+    cin >> input;
+    for(char c: input){
+        if (!isdigit(c) || input.empty()){
+                isNumber = false;
+        }
     }
+    if(isNumber){
+        number = stoi(input);
+        return number;}
     else{
         return 0;
     }
@@ -218,13 +228,13 @@ void edit_book(Book book[])
             case 2:
                 cout << "Enter new author:\n";
                 getline(cin, newValue);
-                book[choice - 1].setName(newValue);
+                book[choice - 1].setAuthor(newValue);
                 cout << "Book author updated successfully.";
                 break;
             case 3:
                 cout << "Enter new content:\n";
                 getline(cin, newValue);
-                book[choice - 1].setName(newValue);
+                book[choice - 1].setContent(newValue);
                 cout << "Book content updated successfully.";
                 break;
             default:
