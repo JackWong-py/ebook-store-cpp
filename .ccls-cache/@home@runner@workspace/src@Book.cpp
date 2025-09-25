@@ -42,5 +42,5 @@ string Book::getContent(){
 }
 
 void Book::reduceBookCount(){
-  bookCount--;
+  bookCount -= 2;
 }
