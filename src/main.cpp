@@ -5,6 +5,7 @@ using namespace std;
 int get_number_only();
 void read_book(Book book[]);
 string get_letters_only();
+void edit_book(Book book[]);
 
 int main() {
     string name, author, content;
@@ -161,4 +162,64 @@ string get_letters_only()
         if(!isalpha(c)&& c != ' '){
             return "";}
     }return name;
+}
+
+void edit_book(Book book[])
+//This function is to edit book.
+{
+    if (Book::bookCount == 0)
+    {
+        cout << "There is no book to edit.\n";
+        return;
+    }
+    int choice;
+    cout << "\nWhich book do you want to edit?\n";
+    for (int i = 0; i < Book::bookCount; i++)
+    {
+        cout << i + 1 << ". " << book[i].getName()
+             << " by " <<  book[i].getAuthor() << endl;
+    }
+    cout << "Enter choice(number): ";
+    choice = get_number_only();
+
+    if (choice <= 0 || choice > Book::bookCount)
+    {
+        cout << "Invalid book selection!\n";
+        return;
+    }
+    int editChoice;
+    cout << "What do you want to edit?\n"
+    << "1. Name\n"
+    << "2. Author\n"
+    << "3. Content\n"
+    << "Enter choice (number): ";
+    editChoice = get_number_only();
+
+    string newValue;
+    cin.ignore();
+
+    switch (editChoice)
+    {
+            case 1:
+                cout << "Enter new name";
+                getline(cin, newValue);
+                book[choice - 1].setName(newValue);
+                cout << "Book name updated successfully.";
+                break;
+            case 2:
+                cout << "Enter new author";
+                getline(cin, newValue);
+                book[choice - 1].setName(newValue);
+                cout << "Book author updated successfully.";
+                break;
+            case 3:
+                cout << "Enter new content";
+                getline(cin, newValue);
+                book[choice - 1].setName(newValue);
+                cout << "Book content updated successfully.";
+                break;
+            default:
+                cout << "Invalid edit choice!";
+                break;
+    }
 }
