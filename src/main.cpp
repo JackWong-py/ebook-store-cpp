@@ -4,7 +4,7 @@ using namespace std;
 
 int get_number_only();
 void read_book(Book book[]);
-
+string get_letters_only();
 
 int main() {
     string name, author, content;
@@ -20,7 +20,7 @@ int main() {
                 break;
             }
             case 2:{
-                
+
             }
             case 3:{
                 cout << "Thank you for using ERead. See you next time" << endl;
@@ -41,14 +41,14 @@ int main1() { //This is our main system (Book Checking, Book Adding, Book Removi
     string newName, newAuthor, newContent;
      int BookCount=0;
 
-    Book book[100]; 
+    Book book[100];
 
     while (true) {
         cout << "Welcome To Our Library System ~ What can our system help you?\n"
              << "1. Book Checking\n2. Add New Book\n3. Remove a Book\n4. List All Book\n5. Exit\n";
         cout << "Enter Your Choice:";
         cin >> choice;
-        
+
         if (choice=="1"){
         	cout << "What is the Book's Name that you want to check:";
         	cin >> Search;
@@ -57,7 +57,7 @@ int main1() { //This is our main system (Book Checking, Book Adding, Book Removi
         		if (book[a].getName()==Search){
         			cout << "Book Name: " << book[a].getName() << "\n";
             		cout << "Author: " << book[a].getAuthor() << "\n";
-            		cout << "Content: " << book[a].getContent() << "\n"; 
+            		cout << "Content: " << book[a].getContent() << "\n";
             		found = true;
             		break;
             if (!found){
@@ -85,7 +85,7 @@ int main1() { //This is our main system (Book Checking, Book Adding, Book Removi
             bool found = false;
             for (int i = 0; i < 100; i++) {
                 if (book[i].getName() == Remove) {
-                    book[i].setBook("", "", ""); 
+                    book[i].setBook("", "", "");
                     cout << "Book \"" << Remove << "\" removed successfully.\n";
                     found = true;
                     break;
@@ -147,4 +147,18 @@ void read_book(Book book[]){
     else {
         cout << "The book list is empty! Please add the book list" << endl;
     }
+}
+
+string get_letters_only()
+//This function validate alphabet input only.
+//It return "" if user input contain other than alphabet except space
+{
+    string name;
+
+    cout << "Enter the name: ";
+    getline(cin, name);
+    for(char c: name){
+        if(!isalpha(c)&& c != ' '){
+            return "";}
+    }return name;
 }

@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1758770397 source:c:\users\jacku\ebook-store-cpp\src\book.cpp
+	<iostream>
+	"Book.h"
+
+1758770397 c:\users\jacku\ebook-store-cpp\src\book.h
+	<iostream>
+
+1758782195 source:c:\users\jacku\ebook-store-cpp\src\main.cpp
+	<iostream>
+	<string>
+	<cctype>
+	"Book.h"
+
