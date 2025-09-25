@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Book.h"
+
 using namespace std;
 
 int get_number_only();
@@ -7,6 +8,7 @@ void read_book(Book book[]);
 void add_book(Book book[]);
 void remove_book(Book book[]);
 string get_letters_only();
+void edit_book(Book book[]);
 
 int main() {
     string name, author, content;
@@ -33,6 +35,7 @@ int main() {
                             break;
                         }
                         case 2:{
+                            edit_book(book);
                             break;
                         }
                         case 3:{
@@ -59,56 +62,6 @@ int main() {
         }
     }
         while(choice1 != 3);
-    return 0;
-}
-
-int main1() { //This is our main system (Book Checking, Book Adding, Book Removing, Book listing)
-    string choice;
-    string Remove;
-    string Search;
-    string newName, newAuthor, newContent;
-     int BookCount=0;
-
-    Book book[100];
-
-    while (true) {
-        cout << "Welcome To Our Library System ~ What can our system help you?\n"
-             << "1. Book Checking\n2. Add New Book\n3. Remove a Book\n4. List All Book\n5. Exit\n";
-        cout << "Enter Your Choice:";
-        cin >> choice;
-        if (choice == "3") {
-            cout << "Insert the Book's Name that you want to Remove:";
-            cin >> Remove;
-
-            bool found = false;
-            for (int i = 0; i < 100; i++) {
-                if (book[i].getName() == Remove) {
-                    book[i].setBook("", "", "");
-                    cout << "Book \"" << Remove << "\" removed successfully.\n";
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                cout << "Book not found!\n";
-            }
-        }
-        else if (choice == "4") {
-            int displayCount = 0;
-            for (int y=0; y < 100; y++){
-                if (book[y].getName() != "" && book[y].getName() != " ") {
-                    displayCount++;
-                    cout << displayCount << ". Book Name: " << book[y].getName() << "\n";
-                    cout << "   Author: " << book[y].getAuthor() << "\n";
-                    cout << "   Content: " << book[y].getContent() << "\n\n";
-                }
-            }
-            cout << "Which Do You Want To Read:";
-        }
-        else {
-            cout << "Please Insert Again!!!\n";
-        }
-    }
     return 0;
 }
 
@@ -205,7 +158,7 @@ void remove_book(Book book[]){
     }
     else {
         cout << "The book list is empty! Please add the book list" << endl;
-    }    
+    }
 }
 
 string get_letters_only()
@@ -218,4 +171,64 @@ string get_letters_only()
         if(!isalpha(c)&& c != ' '){
             return "";}
     }return name;
+}
+
+void edit_book(Book book[])
+//This function is to edit book.
+{
+    if (Book::bookCount == 0)
+    {
+        cout << "There is no book to edit.\n";
+        return;
+    }
+    int choice;
+    cout << "\nWhich book do you want to edit?\n";
+    for (int i = 0; i < Book::bookCount; i++)
+    {
+        cout << i + 1 << ". " << book[i].getName()
+             << " by " <<  book[i].getAuthor() << endl;
+    }
+    cout << "Enter choice(number): ";
+    choice = get_number_only();
+
+    if (choice <= 0 || choice > Book::bookCount)
+    {
+        cout << "Invalid book selection!\n";
+        return;
+    }
+    int editChoice;
+    cout << "What do you want to edit?\n"
+    << "1. Name\n"
+    << "2. Author\n"
+    << "3. Content\n"
+    << "Enter choice (number): ";
+    editChoice = get_number_only();
+
+    string newValue;
+    cin.ignore();
+
+    switch (editChoice)
+    {
+            case 1:
+                cout << "Enter new name:\n";
+                getline(cin, newValue);
+                book[choice - 1].setName(newValue);
+                cout << "Book name updated successfully.";
+                break;
+            case 2:
+                cout << "Enter new author:\n";
+                getline(cin, newValue);
+                book[choice - 1].setName(newValue);
+                cout << "Book author updated successfully.";
+                break;
+            case 3:
+                cout << "Enter new content:\n";
+                getline(cin, newValue);
+                book[choice - 1].setName(newValue);
+                cout << "Book content updated successfully.";
+                break;
+            default:
+                cout << "Invalid edit choice!";
+                break;
+    }
 }
