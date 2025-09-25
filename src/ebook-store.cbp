@@ -32,15 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Book.cpp">
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="Book.cpp" />
+		<Unit filename="Book.h">
+			<Option compile="1" />
+			<Option link="1" />
 		</Unit>
-		<Unit filename="Book.h" />
-		<Unit filename="main.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
+		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
